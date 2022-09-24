@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hq_graph"
+    app:startDestination="@id/hqFragment">
+
+    <fragment
+        android:id="@+id/hqFragment"
+        android:name="com.ebac.hqcomicapp.HQFragment"
+        android:label="fragment_item_list"
+        tools:layout="@layout/fragment_item_list" >
+        <action
+            android:id="@+id/action_hqFragment_to_HQDetailsFragment"
+            app:destination="@id/HQDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/HQDetailsFragment"
+        android:name="com.ebac.hqcomicapp.HQDetailsFragment"
+        android:label="fragment_h_q_details"
+        tools:layout="@layout/fragment_h_q_details" />
+</navigation>
