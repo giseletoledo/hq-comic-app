@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="match_parent"
     tools:context=".HQDetailsFragment">
 
     <TextView
@@ -15,13 +15,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageDetail"
-        app:layout_marginBaseline="10dp" />
+        app:layout_marginBaseline="10dp"
+        tools:layout_editor_absoluteY="250dp" />
 
     <ImageView
         android:id="@+id/imageDetail"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:contentDescription="@string/descricao_detalhe"
         android:scaleType="centerCrop"
         android:src="@drawable/comics_news"
@@ -33,10 +33,22 @@
     <TextView
         android:id="@+id/contentText"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
-        app:layout_constraintTop_toBottomOf="@+id/hqTitle"
+        android:layout_height="0dp"
+        android:text="@string/content_text"
+        app:layout_constraintBottom_toTopOf="@+id/carousel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hqTitle" />
+
+    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+        android:id="@+id/carousel"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </org.imaginativeworld.whynotimagecarousel.ImageCarousel>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
