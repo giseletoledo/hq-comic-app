@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import com.ebac.hqcomicapp.placeholder.PlaceholderContent
 
 /**
  * A fragment representing a list of Items.
  */
-class HQFragment : Fragment() {
+class HQFragment : Fragment(), HQItemListener {
 
     private var columnCount = 1
     private val viewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) {defaultViewModelProviderFactory}
@@ -40,7 +41,8 @@ class HQFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyhqRecyclerViewAdapter(PlaceholderContent.ITEMS)
+                //this referencia o fragmento inteiro
+                adapter = MyhqRecyclerViewAdapter(PlaceholderContent.ITEMS, this@HQFragment)
             }
         }
         return view
@@ -59,5 +61,9 @@ class HQFragment : Fragment() {
                     putInt(ARG_COLUMN_COUNT, columnCount)
                 }
             }
+    }
+    //implementa interface criada no Adapter
+    override fun onItemSelected(position: Int) {
+        findNavController().navigate(R.id.HQDetailsFragment)
     }
 }
