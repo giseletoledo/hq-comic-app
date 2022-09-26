@@ -21,8 +21,8 @@ class HQDetailsFragment : Fragment() {
 
         // controle do ciclo de vida
         binding.lifecycleOwner = this
-        //vincula com a data class
-        binding.hqDetails = viewModel.loadHQDetails()
+        //vincula com a viewModel
+        binding.viewModel= viewModel
 
         return binding.root
     }
