@@ -9,15 +9,9 @@ import android.widget.TextView
 import com.ebac.hqcomicapp.placeholder.PlaceholderContent.PlaceholderItem
 import com.ebac.hqcomicapp.databinding.FragmentItemBinding
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
-
 interface HQItemListener{
     fun onItemSelected(position: Int)
 }
-
 
 class MyhqRecyclerViewAdapter(
     private val values: List<PlaceholderItem>,
@@ -34,30 +28,25 @@ class MyhqRecyclerViewAdapter(
                 false
             )
         )
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        holder.bindItem(item)
 
-        holder.view.setOnClickListener {
+        holder.view.setOnClickListener{
             listener.onItemSelected(position)
         }
     }
 
     override fun getItemCount(): Int = values.size
 
-    inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        //passando a view para capturar no onBindViewHolder
-        val view: View = binding.root
-        val idView: TextView = binding.itemNumber
-        val contentView: TextView = binding.content
-
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
-        }
+    inner class ViewHolder(private val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val view = binding.root
+        fun bindItem(item: PlaceholderItem){
+            binding.hqItem = item
+            binding.executePendingBindings()//atualiza a renderização da tela na hora
+       }
     }
 
 }
