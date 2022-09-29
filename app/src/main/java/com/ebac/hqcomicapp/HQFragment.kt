@@ -8,62 +8,53 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
-import com.ebac.hqcomicapp.placeholder.PlaceholderContent
+import com.ebac.hqcomicapp.databinding.FragmentItemListBinding
 
 /**
  * A fragment representing a list of Items.
  */
 class HQFragment : Fragment(), HQItemListener {
 
-    private var columnCount = 1
+    private lateinit var adapter: MyhqRecyclerViewAdapter
+
+    //pega a view model através do gráfico de navegação
     private val viewModel by navGraphViewModels<HQViewModel>(R.id.hq_graph) {defaultViewModelProviderFactory}
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        arguments?.let {
-            columnCount = it.getInt(ARG_COLUMN_COUNT)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_item_list, container, false)
+        val binding = FragmentItemListBinding.inflate(inflater)
+        val view = binding.root as RecyclerView
 
-        // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                //this referencia o fragmento inteiro
-                adapter = MyhqRecyclerViewAdapter(PlaceholderContent.ITEMS, this@HQFragment)
-            }
+        adapter = MyhqRecyclerViewAdapter(this)
+
+        view.apply {
+            this.adapter = this@HQFragment.adapter
+            this.layoutManager = LinearLayoutManager(context)
         }
+        initObservers()
+
         return view
     }
 
-    companion object {
-
-        // TODO: Customize parameter argument names
-        const val ARG_COLUMN_COUNT = "column-count"
-
-        // TODO: Customize parameter initialization
-        @JvmStatic
-        fun newInstance(columnCount: Int) =
-            HQFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_COLUMN_COUNT, columnCount)
-                }
-            }
+    private fun initObservers(){
+        viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {
+            adapter.updateData(it)
+        })
+        viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
+            val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()
+            findNavController().navigate(action)
+        })
     }
+
+
     //implementa interface criada no Adapter
     override fun onItemSelected(position: Int) {
-        findNavController().navigate(R.id.HQDetailsFragment)
+        viewModel.onHQSelected(position)
+        //findNavController().navigate(R.id.HQDetailsFragment)
     }
 }
