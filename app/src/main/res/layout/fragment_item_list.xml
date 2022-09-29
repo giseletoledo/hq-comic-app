@@ -15,6 +15,6 @@
         android:layout_marginLeft="0dp"
         android:layout_marginRight="0dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".HQFragment"
+        tools:context=".HQHome.HQFragment"
         tools:listitem="@layout/fragment_item" />
 </layout>
