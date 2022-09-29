@@ -1,10 +1,8 @@
-package com.ebac.hqcomicapp
+package com.ebac.hqcomicapp.HQHome
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 
 import com.ebac.hqcomicapp.placeholder.PlaceholderContent.PlaceholderItem
 import com.ebac.hqcomicapp.databinding.FragmentItemBinding

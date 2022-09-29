@@ -3,6 +3,7 @@ package com.ebac.hqcomicapp
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.ebac.hqcomicapp.HQDetails.HQDetails
 import com.ebac.hqcomicapp.placeholder.PlaceholderContent
 import com.ebac.hqcomicapp.placeholder.PlaceholderContent.PlaceholderItem
 

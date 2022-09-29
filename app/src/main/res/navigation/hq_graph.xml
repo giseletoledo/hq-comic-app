@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/hqFragment"
-        android:name="com.ebac.hqcomicapp.HQFragment"
+        android:name="com.ebac.hqcomicapp.HQHome.HQFragment"
         android:label="fragment_item_list"
         tools:layout="@layout/fragment_item_list" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/HQDetailsFragment"
-        android:name="com.ebac.hqcomicapp.HQDetailsFragment"
+        android:name="com.ebac.hqcomicapp.HQDetails.HQDetailsFragment"
         android:label="fragment_h_q_details"
         tools:layout="@layout/fragment_h_q_details" />
 </navigation>
