@@ -14,10 +14,19 @@ interface HQItemListener{
 }
 
 class MyhqRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>,
     private val listener:HQItemListener
 
 ) : RecyclerView.Adapter<MyhqRecyclerViewAdapter.ViewHolder>() {
+    //lista vazia
+    private val values: MutableList<PlaceholderItem> = ArrayList()
+
+    fun updateData(hqList: List<PlaceholderItem>){
+        values.clear()
+        //adiciona os items e notifica mudanças
+        values.addAll(hqList)
+        notifyDataSetChanged()
+
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
