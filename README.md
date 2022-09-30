@@ -14,7 +14,7 @@ Em progresso
 </p>
 </div>
 
-2 - Carregando a lista com dados da API
+2 - Carregando a lista com dados da API, utilizando Glide para as imagens e retrofit para requisições HTTP
 
 <div style="display:flex;">
 <p align="center">
