@@ -6,4 +6,6 @@ import com.squareup.moshi.JsonClass
 data class Image(
     val path: String?,
     val extension: String?
-)
+) {
+    fun getFullImagePath() = "$path.$extension"
+}
