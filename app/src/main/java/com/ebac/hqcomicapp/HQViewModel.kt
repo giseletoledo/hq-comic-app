@@ -15,7 +15,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 class HQViewModel : ViewModel() {
     //primeiro pega como tipo LiveData que não é modificável, só de leitura
-    val hqDetailsLiveData : LiveData<HQDetails>
+    val hqDetailsLiveData: LiveData<HQDetails>
         get() = _hqDetailsLiveData
     //transforma em dados mutáveis
     private val _hqDetailsLiveData = MutableLiveData<HQDetails>()
