@@ -12,7 +12,7 @@ class ApiHelper {
             val md = MessageDigest.getInstance("MD5")
             val hash = md.digest(input.toByteArray())
 
-            return BigInteger(1,hash).toString().padStart(32, '0')
+            return BigInteger(1,hash).toString(16).padStart(32, '0')
         }
     }
 }
