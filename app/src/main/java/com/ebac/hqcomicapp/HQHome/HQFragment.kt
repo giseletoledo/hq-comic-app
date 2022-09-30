@@ -44,7 +44,11 @@ class HQFragment : Fragment(), HQItemListener {
 
     private fun initObservers(){
         viewModel.hqListLiveData.observe(viewLifecycleOwner, Observer {
-            adapter.updateData(it)
+            //verifica se é nulo
+            it?.let{
+                adapter.updateData(it)
+            }
+
         })
         viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
             val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()

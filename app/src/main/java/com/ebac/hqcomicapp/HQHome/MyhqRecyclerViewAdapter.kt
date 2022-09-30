@@ -3,8 +3,8 @@ package com.ebac.hqcomicapp.HQHome
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.ebac.hqcomicapp.data.Comic
 
-import com.ebac.hqcomicapp.placeholder.PlaceholderContent.PlaceholderItem
 import com.ebac.hqcomicapp.databinding.FragmentItemBinding
 
 interface HQItemListener{
@@ -16,12 +16,10 @@ class MyhqRecyclerViewAdapter(
 
 ) : RecyclerView.Adapter<MyhqRecyclerViewAdapter.ViewHolder>() {
     //lista vazia
-    private val values: MutableList<PlaceholderItem> = ArrayList()
+    private var values: List<Comic> = ArrayList()
 
-    fun updateData(hqList: List<PlaceholderItem>){
-        values.clear()
-        //adiciona os items e notifica mudanças
-        values.addAll(hqList)
+    fun updateData(hqList: List<Comic>){
+        values = hqList
         notifyDataSetChanged()
 
     }
@@ -50,7 +48,7 @@ class MyhqRecyclerViewAdapter(
 
     inner class ViewHolder(private val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val view = binding.root
-        fun bindItem(item: PlaceholderItem){
+        fun bindItem(item: Comic){
             binding.hqItem = item
             binding.executePendingBindings()//atualiza a renderização da tela na hora
        }
