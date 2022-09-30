@@ -9,8 +9,8 @@ Em progresso
 
 <div style="display:flex;">
 <p align="center">
-<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshot_20220926_180328.png" alt="Screenshot da tela do app">
-<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshot_20220926_180357.png" alt="Screenshot da tela do app">
+<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshots/Screenshot_20220926_180328.png" alt="Screenshot da tela do app">
+<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshots/Screenshot_20220926_180357.png" alt="Screenshot da tela do app">
 </p>
 </div>
 
@@ -18,9 +18,9 @@ Em progresso
 
 <div style="display:flex;">
 <p align="center">
-<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshot_20220930_183948.png" alt="Screenshot da tela do app">
-<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshot_20220930_183616.png" alt="Screenshot da tela do app">
-<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshot_20220930_183905.png" alt="Screenshot da tela do app">
+<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshots/Screenshot_20220930_183948.png" alt="Screenshot da tela do app">
+<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshots/Screenshot_20220930_183616.png" alt="Screenshot da tela do app">
+<img width="20%" src="https://github.com/giseletoledo/HQComicApp/blob/main/Screenshots/Screenshot_20220930_183905.png" alt="Screenshot da tela do app">
 </p>
 </div>
 
