@@ -4,8 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="com.ebac.hqcomicapp.data.DataState"/>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.ebac.hqcomicapp.HQViewModel" />
     </data>
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
@@ -16,5 +25,39 @@
         android:layout_marginRight="0dp"
         app:layoutManager="LinearLayoutManager"
         tools:context=".HQHome.HQFragment"
-        tools:listitem="@layout/fragment_item" />
+        tools:listitem="@layout/fragment_item"
+        android:visibility="@{viewModel.appState == DataState.Success ? View.VISIBLE : View.GONE}"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="@{viewModel.appState == DataState.Loading ? View.VISIBLE : View.GONE}"
+        >
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="@{viewModel.appState == DataState.Error ? View.VISIBLE : View.GONE}">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/error_msg"
+                />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</LinearLayout>
+
 </layout>

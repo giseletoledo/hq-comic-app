@@ -3,7 +3,6 @@ package com.ebac.hqcomicapp.HQHome
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,11 +28,17 @@ class HQFragment : Fragment(), HQItemListener {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentItemListBinding.inflate(inflater)
-        val view = binding.root as RecyclerView
+        // val view = binding.root as RecyclerView - O layout principal não é mais RecyclerView
+
+        val view = binding.root
+        val recyclerView = binding.list // vincula com o id definido no layout
+
+        binding.viewModel = viewModel// vincula com o data do XML (databinding)
+        binding.lifecycleOwner = this
 
         adapter = MyhqRecyclerViewAdapter(this)
 
-        view.apply {
+        recyclerView.apply {
             this.adapter = this@HQFragment.adapter
             this.layoutManager = LinearLayoutManager(context)
         }

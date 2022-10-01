@@ -7,5 +7,8 @@ data class Image(
     val path: String?,
     val extension: String?
 ) {
-    fun getFullImagePath() = "$path.$extension"
+    fun getFullImagePath(): String{
+      val pathHttps = path?.replace("http","https")
+      return "$pathHttps.$extension"
+    }
 }

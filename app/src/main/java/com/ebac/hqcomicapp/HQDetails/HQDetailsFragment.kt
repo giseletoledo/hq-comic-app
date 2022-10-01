@@ -19,7 +19,10 @@ class HQDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding: FragmentHQDetailsBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_h_q_details, container,false)
+            inflater,
+            R.layout.fragment_h_q_details,
+            container,
+            false)
 
         // controle do ciclo de vida
         binding.lifecycleOwner = this
