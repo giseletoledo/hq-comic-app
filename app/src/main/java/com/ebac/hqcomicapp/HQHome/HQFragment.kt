@@ -56,8 +56,10 @@ class HQFragment : Fragment(), HQItemListener {
 
         })
         viewModel.navigationToDetailLiveData.observe(viewLifecycleOwner, Observer {
-            val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()
-            findNavController().navigate(action)
+            it.getContentIfNotHandled()?.let {
+                val action = HQFragmentDirections.actionHqFragmentToHQDetailsFragment()
+                findNavController().navigate(action)
+            }
         })
     }
 
@@ -65,6 +67,5 @@ class HQFragment : Fragment(), HQItemListener {
     //implementa interface criada no Adapter
     override fun onItemSelected(position: Int) {
         viewModel.onHQSelected(position)
-        //findNavController().navigate(R.id.HQDetailsFragment)
     }
 }

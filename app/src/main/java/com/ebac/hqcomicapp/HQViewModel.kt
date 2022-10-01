@@ -8,6 +8,7 @@ import com.ebac.hqcomicapp.api.ComicsService
 import com.ebac.hqcomicapp.data.ApiCredentials
 import com.ebac.hqcomicapp.data.Comic
 import com.ebac.hqcomicapp.data.DataState
+import com.ebac.hqcomicapp.data.Event
 import com.ebac.hqcomicapp.helper.ApiHelper
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
@@ -29,7 +30,7 @@ class HQViewModel : ViewModel() {
 
     val navigationToDetailLiveData
         get() = _navigationToDetailLiveData
-    private val _navigationToDetailLiveData = MutableLiveData<Unit>()
+    private val _navigationToDetailLiveData = MutableLiveData<Event<Unit>>()
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(ApiCredentials().baseUrl)
@@ -47,7 +48,7 @@ class HQViewModel : ViewModel() {
         val hqDetails = _hqListLiveData.value?.get(position)//pega um elemento da lista
         hqDetails?.let{
             _hqDetailsLiveData.postValue(it)
-            _navigationToDetailLiveData.postValue(Unit)
+            _navigationToDetailLiveData.postValue(Event(Unit))
         }
 
     }
