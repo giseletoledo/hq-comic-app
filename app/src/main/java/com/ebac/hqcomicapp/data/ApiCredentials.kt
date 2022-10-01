@@ -1,4 +1,4 @@
-package com.ebac.hqcomicapp
+package com.ebac.hqcomicapp.data
 
 class ApiCredentials {
     val publicKey = ""

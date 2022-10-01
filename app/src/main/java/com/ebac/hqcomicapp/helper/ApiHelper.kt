@@ -1,4 +1,4 @@
-package com.ebac.hqcomicapp
+package com.ebac.hqcomicapp.helper
 
 import java.math.BigInteger
 import java.security.MessageDigest

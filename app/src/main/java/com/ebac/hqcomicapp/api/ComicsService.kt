@@ -1,4 +1,4 @@
-package com.ebac.hqcomicapp
+package com.ebac.hqcomicapp.api
 
 import com.ebac.hqcomicapp.data.ComicResponse
 import retrofit2.Response
