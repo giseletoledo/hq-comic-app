@@ -1,12 +1,12 @@
 package com.ebac.hqcomicapp
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ebac.hqcomicapp.HQDetails.HQDetails
 import com.ebac.hqcomicapp.data.Comic
 import com.ebac.hqcomicapp.data.ComicResponse
+import com.ebac.hqcomicapp.data.DataState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -24,6 +24,10 @@ class HQViewModel : ViewModel() {
         get() = _hqListLiveData
     private val _hqListLiveData = MutableLiveData<List<Comic>?>()
 
+    val appState: LiveData<DataState>
+        get() = _appState
+    private val _appState = MutableLiveData<DataState>()
+
     val navigationToDetailLiveData
         get() = _navigationToDetailLiveData
     private val _navigationToDetailLiveData = MutableLiveData<Unit>()
@@ -36,7 +40,7 @@ class HQViewModel : ViewModel() {
     private val comicsService = retrofit.create(ComicsService::class.java)
 
     init {
-        //_hqListLiveData.postValue(PlaceholderContent.ITEMS)
+        _appState.postValue(DataState.Loading)
         getHqData()
     }
 
@@ -57,13 +61,17 @@ class HQViewModel : ViewModel() {
             override fun onResponse(call: Call<ComicResponse>, response: Response<ComicResponse>) {
                 if(response.isSuccessful){
                     _hqListLiveData.postValue(response.body()?.data?.results)
+                    _appState.postValue(DataState.Success)
+                } else {
+                    _appState.postValue(DataState.Error)
                 }
             }
 
             override fun onFailure(call: Call<ComicResponse>, t: Throwable) {
-                t?.message?.let {
+               /* t?.message?.let {
                     Log.e("onFailure error", t?.message!!)
-                }
+                }*/
+                _appState.postValue(DataState.Error)
             }
 
         })
