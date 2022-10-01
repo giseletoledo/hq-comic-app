@@ -4,18 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.ebac.hqcomicapp.HQDetails.HQDetails
+import com.ebac.hqcomicapp.api.ComicsService
+import com.ebac.hqcomicapp.data.ApiCredentials
 import com.ebac.hqcomicapp.data.Comic
 import com.ebac.hqcomicapp.data.DataState
+import com.ebac.hqcomicapp.helper.ApiHelper
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 class HQViewModel : ViewModel() {
 
-    val hqDetailsLiveData: LiveData<HQDetails>//primeiro pega como tipo LiveData que não é modificável, só de leitura
+    val hqDetailsLiveData: LiveData<Comic>//primeiro pega como tipo LiveData que não é modificável, só de leitura
         get() = _hqDetailsLiveData
-    private val _hqDetailsLiveData = MutableLiveData<HQDetails>() //transforma em dados mutáveis
+    private val _hqDetailsLiveData = MutableLiveData<Comic>() //transforma em dados mutáveis
 
     val hqListLiveData: LiveData<List<Comic>?>
         get() = _hqListLiveData
@@ -42,9 +44,12 @@ class HQViewModel : ViewModel() {
     }
 
     fun onHQSelected(position: Int) {
-        val hqDetails = HQDetails("Minha HQ", "Este é um conteúdo de texto extenso")
-        _hqDetailsLiveData.postValue(hqDetails)
-        _navigationToDetailLiveData.postValue(Unit)
+        val hqDetails = _hqListLiveData.value?.get(position)//pega um elemento da lista
+        hqDetails?.let{
+            _hqDetailsLiveData.postValue(it)
+            _navigationToDetailLiveData.postValue(Unit)
+        }
+
     }
 
     private fun getHqData() {

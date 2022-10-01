@@ -8,7 +8,8 @@ data class Comic(
     val title: String?,
     val description: String?,
     val textObjects: List<TextObject>?,
-    val thumbnail: Image?
+    val thumbnail: Image?,
+    val images: List<Image>?
 ){
     fun getContent():String{
         return when {
