@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.ebac.hqcomicapp.HQViewModel" />
@@ -18,7 +19,7 @@
             android:id="@+id/hqTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{viewModel.hqDetailsLiveData.title}"
+            android:text='@{viewModel.hqDetailsLiveData.title ?? ""}'
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -36,7 +37,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.hqDetailsLiveData.carouselImages.empty ? View.GONE : View.VISIBLE}"
+            app:srcUrl="@{viewModel.hqDetailsLiveData.imageUrl}"
+            />
 
         <TextView
             android:id="@+id/contentText"
@@ -55,9 +59,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent">
-
-        </org.imaginativeworld.whynotimagecarousel.ImageCarousel>
+            app:layout_constraintStart_toStartOf="parent"
+            app:imageList="@{viewModel.hqDetailsLiveData.carouselImages}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
