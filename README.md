@@ -2,7 +2,6 @@
 
 Projeto para listar dados da API da Marvel(http://marvel.com)
 
-Em progresso
 
 1 - Layout de lista com recyclerview, fragments e navegação com graph, arquitetura viewmodel e databinding
 
